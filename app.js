@@ -4,27 +4,28 @@ const heroColorName = document.getElementById('heroColorName');
 const swatches = [...document.querySelectorAll('.swatch')];
 let selectedColor = 'أبيض';
 
-function setColor(image, label, key){
-  heroImage.style.opacity = '.25';
-  setTimeout(() => {
-    heroImage.src = image;
-    heroImage.alt = `طاولة شاشة رُكن بلون ${label}`;
-    detailImage.src = image;
-    detailImage.alt = `تفاصيل طاولة شاشة رُكن بلون ${label}`;
-    heroColorName.textContent = label;
-    selectedColor = label;
-    heroImage.onload = () => heroImage.style.opacity = '1';
-  }, 120);
+function setColor(label, key){
+  heroImage.classList.remove('shot-white','shot-oak','shot-walnut');
+  detailImage.classList.remove('shot-white','shot-oak','shot-walnut');
+  heroImage.classList.add(`shot-${key}`);
+  detailImage.classList.add(`shot-${key}`);
+  heroImage.setAttribute('aria-label', `طاولة شاشة رُكن بلون ${label}`);
+  detailImage.setAttribute('aria-label', `تفاصيل طاولة شاشة رُكن بلون ${label}`);
+  heroColorName.textContent = label;
+  selectedColor = label;
   swatches.forEach(btn => btn.classList.toggle('active', btn.dataset.color === key));
 }
 
-swatches.forEach(btn => btn.addEventListener('click', () => setColor(btn.dataset.image, btn.dataset.label, btn.dataset.color)));
+swatches.forEach(btn => btn.addEventListener('click', () => setColor(btn.dataset.label, btn.dataset.color)));
 
 document.querySelectorAll('.color-card').forEach(card => {
   card.addEventListener('click', () => {
     const key = card.dataset.pick;
     const btn = swatches.find(item => item.dataset.color === key);
-    if(btn){ setColor(btn.dataset.image, btn.dataset.label, key); document.querySelector('.hero-visual').scrollIntoView({behavior:'smooth', block:'center'}); }
+    if(btn){
+      setColor(btn.dataset.label, key);
+      document.querySelector('.hero-visual').scrollIntoView({behavior:'smooth', block:'center'});
+    }
   });
 });
 

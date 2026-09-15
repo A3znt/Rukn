@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f4efe7" />
   <meta name="description" content="رُكن — طاولة شاشة 1.80 متر مع بوكسين ورف، متوفرة بثلاثة ألوان بسعر 350 د.ل." />
   <title>رُكن | طاولة شاشة 1.80 متر</title>
-  <link rel="preload" as="image" href="assets/white.webp" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="sprite.css" />
 </head>
 <body>
   <header class="site-header">
@@ -49,13 +49,13 @@
 
       <div class="hero-visual" aria-live="polite">
         <div class="image-stage">
-          <img id="heroImage" src="assets/white.webp" alt="طاولة شاشة رُكن باللون الأبيض" />
+          <div id="heroImage" class="product-shot shot-white" role="img" aria-label="طاولة شاشة رُكن باللون الأبيض"></div>
           <div class="image-badge">اللون: <strong id="heroColorName">أبيض</strong></div>
         </div>
         <div class="swatches" role="group" aria-label="اختر لون المنتج">
-          <button class="swatch active" data-color="white" data-label="أبيض" data-image="assets/white.webp" aria-label="اللون الأبيض"><span style="--swatch:#f2f0ea"></span></button>
-          <button class="swatch" data-color="oak" data-label="بلوط فاتح" data-image="assets/oak.webp" aria-label="لون بلوط فاتح"><span style="--swatch:#caa77a"></span></button>
-          <button class="swatch" data-color="walnut" data-label="جوز داكن" data-image="assets/walnut.webp" aria-label="لون جوز داكن"><span style="--swatch:#69442f"></span></button>
+          <button class="swatch active" data-color="white" data-label="أبيض" aria-label="اللون الأبيض"><span style="--swatch:#f2f0ea"></span></button>
+          <button class="swatch" data-color="oak" data-label="بلوط فاتح" aria-label="لون بلوط فاتح"><span style="--swatch:#caa77a"></span></button>
+          <button class="swatch" data-color="walnut" data-label="جوز داكن" aria-label="لون جوز داكن"><span style="--swatch:#69442f"></span></button>
         </div>
       </div>
     </section>
@@ -73,15 +73,15 @@
       </div>
       <div class="color-grid">
         <article class="color-card" data-pick="white">
-          <img src="assets/white.webp" alt="الطاولة باللون الأبيض" loading="lazy" />
+          <div class="product-shot shot-white" role="img" aria-label="الطاولة باللون الأبيض"></div>
           <div class="card-meta"><div><h3>أبيض</h3><p>نظيف ومشرق</p></div><span class="dot dot-white"></span></div>
         </article>
         <article class="color-card" data-pick="oak">
-          <img src="assets/oak.webp" alt="الطاولة بلون البلوط الفاتح" loading="lazy" />
+          <div class="product-shot shot-oak" role="img" aria-label="الطاولة بلون البلوط الفاتح"></div>
           <div class="card-meta"><div><h3>بلوط فاتح</h3><p>دافئ وطبيعي</p></div><span class="dot dot-oak"></span></div>
         </article>
         <article class="color-card" data-pick="walnut">
-          <img src="assets/walnut.webp" alt="الطاولة بلون الجوز الداكن" loading="lazy" />
+          <div class="product-shot shot-walnut" role="img" aria-label="الطاولة بلون الجوز الداكن"></div>
           <div class="card-meta"><div><h3>جوز داكن</h3><p>فخم وهادئ</p></div><span class="dot dot-walnut"></span></div>
         </article>
       </div>
@@ -89,7 +89,7 @@
 
     <section id="details" class="details section-shell section-block">
       <div class="details-image">
-        <img id="detailImage" src="assets/white.webp" alt="تفاصيل طاولة شاشة رُكن" loading="lazy" />
+        <div id="detailImage" class="product-shot shot-white" role="img" aria-label="تفاصيل طاولة شاشة رُكن"></div>
       </div>
       <div class="details-copy">
         <span class="eyebrow">كل شيء محسوب ببساطة</span>

@@ -1,7 +1,10 @@
 const heroImage = document.getElementById('heroImage');
 const detailImage = document.getElementById('detailImage');
 const heroColorName = document.getElementById('heroColorName');
+const orderColorName = document.getElementById('orderColorName');
+const sheetColorName = document.getElementById('sheetColorName');
 const swatches = [...document.querySelectorAll('.swatch')];
+const colorCards = [...document.querySelectorAll('.color-card')];
 
 const IMAGES = {
   white: `data:image/webp;base64,${window.RUKN_WHITE || ''}`,
@@ -15,55 +18,125 @@ const LABELS = {
   walnut: 'جوز داكن'
 };
 
-let selectedColor = 'أبيض';
+let selectedKey = 'oak';
 
-// Populate all product photography from the embedded generated assets.
-document.querySelectorAll('[data-src-key]').forEach((img) => {
-  const key = img.dataset.srcKey;
-  if (IMAGES[key]) img.src = IMAGES[key];
-});
+function fillImages() {
+  document.querySelectorAll('[data-src-key]').forEach((img) => {
+    const key = img.dataset.srcKey;
+    if (IMAGES[key]) img.src = IMAGES[key];
+  });
+}
 
-function setColor(key) {
-  const image = IMAGES[key];
+function setColor(key, scrollToProduct = false) {
+  if (!IMAGES[key] || !LABELS[key]) return;
+
+  selectedKey = key;
   const label = LABELS[key];
-  if (!image || !label) return;
 
-  heroImage.style.opacity = '.25';
-  window.setTimeout(() => {
-    heroImage.src = image;
-    heroImage.alt = `طاولة شاشة رُكن بلون ${label}`;
-    detailImage.src = image;
-    detailImage.alt = `تفاصيل طاولة شاشة رُكن بلون ${label}`;
-    heroColorName.textContent = label;
-    selectedColor = label;
-    heroImage.style.opacity = '1';
-  }, 120);
+  if (heroImage) {
+    heroImage.style.opacity = '.28';
+    window.setTimeout(() => {
+      heroImage.src = IMAGES[key];
+      heroImage.alt = `مجموعة طاولة شاشة ركن بلون ${label}`;
+      heroImage.style.opacity = '1';
+    }, 110);
+  }
+
+  if (detailImage) {
+    detailImage.src = IMAGES[key];
+    detailImage.alt = `مجموعة طاولة شاشة ركن بلون ${label}`;
+  }
+
+  [heroColorName, orderColorName, sheetColorName].forEach((el) => {
+    if (el) el.textContent = label;
+  });
 
   swatches.forEach((btn) => btn.classList.toggle('active', btn.dataset.color === key));
+  colorCards.forEach((card) => card.classList.toggle('selected', card.dataset.pick === key));
+
+  if (scrollToProduct) {
+    document.getElementById('product')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 swatches.forEach((btn) => {
   btn.addEventListener('click', () => setColor(btn.dataset.color));
 });
 
-document.querySelectorAll('.color-card').forEach((card) => {
-  card.addEventListener('click', () => {
-    const key = card.dataset.pick;
-    setColor(key);
-    document.querySelector('.hero-visual').scrollIntoView({ behavior: 'smooth', block: 'center' });
+colorCards.forEach((card) => {
+  card.addEventListener('click', () => setColor(card.dataset.pick, false));
+  card.querySelector('button')?.addEventListener('click', (event) => {
+    event.stopPropagation();
+    setColor(card.dataset.pick, true);
   });
+});
+
+const sheet = document.getElementById('orderSheet');
+const backdrop = document.getElementById('sheetBackdrop');
+const closeButton = document.getElementById('sheetClose');
+
+function openSheet() {
+  if (!sheet || !backdrop) return;
+  if (sheetColorName) sheetColorName.textContent = LABELS[selectedKey];
+  sheet.hidden = false;
+  backdrop.hidden = false;
+  document.body.classList.add('sheet-open');
+  closeButton?.focus();
+}
+
+function closeSheet() {
+  if (!sheet || !backdrop) return;
+  sheet.hidden = true;
+  backdrop.hidden = true;
+  document.body.classList.remove('sheet-open');
+}
+
+document.querySelectorAll('.open-order').forEach((button) => {
+  button.addEventListener('click', openSheet);
+});
+closeButton?.addEventListener('click', closeSheet);
+backdrop?.addEventListener('click', closeSheet);
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && sheet && !sheet.hidden) closeSheet();
 });
 
 const copyOrder = document.getElementById('copyOrder');
 const copyStatus = document.getElementById('copyStatus');
 
-copyOrder.addEventListener('click', async () => {
-  const text = `السلام عليكم، نبي نطلب مجموعة رُكن: طاولة شاشة 1.80 متر + بوكسين + رف، اللون: ${selectedColor}، السعر 350 د.ل.`;
+copyOrder?.addEventListener('click', async () => {
+  const label = LABELS[selectedKey];
+  const message = `السلام عليكم، نبي نطلب مجموعة ركن: طاولة شاشة 1.80 متر + بوكسين + رف، اللون: ${label}، السعر 350 د.ل.`;
+
   try {
-    await navigator.clipboard.writeText(text);
-    copyStatus.textContent = 'تم نسخ نص الطلب ✓';
+    await navigator.clipboard.writeText(message);
+    copyStatus.textContent = 'تم نسخ رسالة الطلب ✓ — ابعتها لصفحة ركن في الخاص.';
+    copyOrder.textContent = 'تم النسخ ✓';
+    window.setTimeout(() => {
+      copyOrder.textContent = 'انسخ رسالة الطلب';
+      copyStatus.textContent = 'بعد النسخ، ابعتها لصفحة ركن في الخاص.';
+    }, 3200);
   } catch {
-    copyStatus.textContent = 'انسخ هذا النص وأرسله لنا: ' + text;
+    copyStatus.textContent = message;
   }
-  window.setTimeout(() => { copyStatus.textContent = ''; }, 3500);
 });
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reveals = [...document.querySelectorAll('.reveal')];
+
+if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+  reveals.forEach((el) => el.classList.add('in'));
+} else {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+
+  reveals.forEach((el) => observer.observe(el));
+}
+
+fillImages();
+setColor('oak');

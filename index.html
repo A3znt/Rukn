@@ -3,125 +3,253 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#f4efe7" />
-  <meta name="description" content="رُكن — طاولة شاشة 1.80 متر مع بوكسين ورف، متوفرة بثلاثة ألوان بسعر 350 د.ل." />
-  <title>رُكن | طاولة شاشة 1.80 متر</title>
+  <meta name="theme-color" content="#181714" />
+  <meta name="description" content="ركن — أثاث بسيط بتفاصيل هادئة. اكتشف مجموعة طاولة الشاشة 1.80 متر مع بوكسين ورف بثلاثة ألوان." />
+  <title>ركن | أثاث يصنع ركنك</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="grain" aria-hidden="true"></div>
+
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="رُكن - الرئيسية">
-      <span class="brand-ar">رُكن</span>
-      <span class="brand-divider"></span>
+    <a class="brand" href="#top" aria-label="ركن - الرئيسية">
+      <span class="brand-word">ركن</span>
+      <span class="brand-dot" aria-hidden="true"></span>
       <span class="brand-en">RUKN</span>
     </a>
+
     <nav class="nav" aria-label="التنقل الرئيسي">
-      <a href="#colors">الألوان</a>
+      <a href="#product">المجموعة</a>
       <a href="#details">التفاصيل</a>
-      <a class="nav-cta" href="#order">اطلب الآن</a>
+      <a href="#colors">الألوان</a>
+      <a href="#about">عن ركن</a>
     </nav>
+
+    <a class="header-cta" href="#order">اطلب الآن</a>
   </header>
 
   <main id="top">
-    <section class="hero section-shell">
-      <div class="hero-copy">
-        <span class="eyebrow">🔥 3 قطع بسعر حرق</span>
-        <h1>طاولة شاشة<br><strong>1.80 متر</strong></h1>
-        <p class="hero-sub">طاولة شاشة + بوكسين جداريين + رف، بتصميم عصري مرتب وثلاثة ألوان تناسب ديكور بيتك.</p>
-
-        <div class="price-row">
-          <div class="price"><span>350</span><small>د.ل فقط</small></div>
-          <div class="price-note">المجموعة كاملة</div>
-        </div>
+    <section class="hero shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">RUKN / FIRST COLLECTION</p>
+        <h1>أثاث بسيط.<br><em>حضور واضح.</em></h1>
+        <p class="hero-lead">قطع مختارة تعطي المساحة شكل أهدأ، وتخلي كل شيء في مكانه بدون زحمة بصرية.</p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#order">اطلب الآن</a>
-          <a class="btn btn-ghost" href="#colors">شوف الألوان</a>
+          <a class="btn btn-dark" href="#product">شوف المجموعة</a>
+          <a class="text-link" href="#about">تعرف على ركن <span>↙</span></a>
         </div>
 
-        <div class="mini-points" aria-label="مميزات مختصرة">
-          <span>1.80م</span>
-          <span>3 ألوان</span>
-          <span>3 قطع كاملة</span>
+        <div class="hero-meta">
+          <div><b>01</b><span>تصميم بسيط</span></div>
+          <div><b>02</b><span>استخدام عملي</span></div>
+          <div><b>03</b><span>ألوان هادئة</span></div>
         </div>
       </div>
 
-      <div class="hero-visual" aria-live="polite">
-        <div class="image-stage">
-          <img id="heroImage" data-src-key="white" alt="طاولة شاشة رُكن باللون الأبيض" />
-          <div class="image-badge">اللون: <strong id="heroColorName">أبيض</strong></div>
+      <div class="hero-media reveal">
+        <div class="hero-card">
+          <img id="heroImage" data-src-key="oak" alt="مجموعة طاولة شاشة ركن بلون البلوط الفاتح" fetchpriority="high" />
+          <div class="hero-card-top">
+            <span>مجموعة 01</span>
+            <strong>NEW</strong>
+          </div>
+          <div class="hero-card-bottom">
+            <div>
+              <small>اللون المختار</small>
+              <b id="heroColorName">بلوط فاتح</b>
+            </div>
+            <div class="price-badge"><strong>350</strong><span>د.ل</span></div>
+          </div>
         </div>
-        <div class="swatches" role="group" aria-label="اختر لون المنتج">
-          <button class="swatch active" data-color="white" data-label="أبيض" aria-label="اللون الأبيض"><span style="--swatch:#f2f0ea"></span></button>
-          <button class="swatch" data-color="oak" data-label="بلوط فاتح" aria-label="لون بلوط فاتح"><span style="--swatch:#caa77a"></span></button>
-          <button class="swatch" data-color="walnut" data-label="جوز داكن" aria-label="لون جوز داكن"><span style="--swatch:#69442f"></span></button>
-        </div>
-      </div>
-    </section>
 
-    <section class="trust-strip" aria-label="معلومات المنتج">
-      <div><b>1.80 متر</b><span>عرض الطاولة</span></div>
-      <div><b>3 ألوان</b><span>لنفس التصميم</span></div>
-      <div><b>350 د.ل</b><span>سعر المجموعة</span></div>
-    </section>
-
-    <section id="colors" class="colors section-shell section-block">
-      <div class="section-heading">
-        <span class="eyebrow">اختار اللي يركب على بيتك</span>
-        <h2>نفس التصميم. ثلاث ألوان.</h2>
-      </div>
-      <div class="color-grid">
-        <article class="color-card" data-pick="white">
-          <img data-src-key="white" alt="الطاولة باللون الأبيض" loading="lazy" />
-          <div class="card-meta"><div><h3>أبيض</h3><p>نظيف ومشرق</p></div><span class="dot dot-white"></span></div>
-        </article>
-        <article class="color-card" data-pick="oak">
-          <img data-src-key="oak" alt="الطاولة بلون البلوط الفاتح" loading="lazy" />
-          <div class="card-meta"><div><h3>بلوط فاتح</h3><p>دافئ وطبيعي</p></div><span class="dot dot-oak"></span></div>
-        </article>
-        <article class="color-card" data-pick="walnut">
-          <img data-src-key="walnut" alt="الطاولة بلون الجوز الداكن" loading="lazy" />
-          <div class="card-meta"><div><h3>جوز داكن</h3><p>فخم وهادئ</p></div><span class="dot dot-walnut"></span></div>
-        </article>
-      </div>
-    </section>
-
-    <section id="details" class="details section-shell section-block">
-      <div class="details-image">
-        <img id="detailImage" data-src-key="white" alt="تفاصيل طاولة شاشة رُكن" loading="lazy" />
-      </div>
-      <div class="details-copy">
-        <span class="eyebrow">كل شيء محسوب ببساطة</span>
-        <h2>قطعة عملية بدون ما تزدحم المساحة.</h2>
-        <p>وحدة شاشة طويلة بتخزين مغلق في الجانبين ومساحة مفتوحة في المنتصف، مع بوكسين ورف جداري يكملوا التكوين.</p>
-        <div class="spec-list">
-          <div><span>01</span><p><b>عرض 1.80 متر</b><small>مقاس مناسب لمعظم الصالات</small></p></div>
-          <div><span>02</span><p><b>بوكسين + رف</b><small>تنسيق جداري متكامل</small></p></div>
-          <div><span>03</span><p><b>ثلاثة ألوان</b><small>أبيض، بلوط فاتح، جوز داكن</small></p></div>
+        <div class="hero-swatches" role="group" aria-label="اختر لون المنتج">
+          <button class="swatch" data-color="white" data-label="أبيض" aria-label="اللون الأبيض"><span style="--swatch:#eeeae3"></span></button>
+          <button class="swatch active" data-color="oak" data-label="بلوط فاتح" aria-label="لون بلوط فاتح"><span style="--swatch:#c39a68"></span></button>
+          <button class="swatch" data-color="walnut" data-label="جوز داكن" aria-label="لون جوز داكن"><span style="--swatch:#59402f"></span></button>
         </div>
       </div>
     </section>
 
-    <section id="order" class="order section-shell section-block">
-      <div class="order-card">
+    <section class="manifesto">
+      <div class="manifesto-track">
+        <span>مساحة أهدأ</span><i></i><span>تفاصيل أقل</span><i></i><span>استخدام أكثر</span><i></i><span>ركن يكمّل بيتك</span>
+      </div>
+    </section>
+
+    <section id="product" class="product shell block">
+      <div class="section-head reveal">
         <div>
-          <span class="eyebrow">عرض رُكن</span>
-          <h2>3 قطع بـ <strong>350 د.ل فقط 🔥</strong></h2>
-          <p>اختار اللون المناسب، وبعدها انسخ رسالة الطلب وابعتها لنا.</p>
+          <p class="eyebrow">المجموعة الأولى</p>
+          <h2>ثلاث قطع.<br>تكوين واحد متوازن.</h2>
         </div>
-        <div class="order-actions">
-          <button class="btn btn-primary" id="copyOrder" type="button">انسخ نص الطلب</button>
-          <a class="btn btn-ghost" href="#colors">غيّر اللون</a>
-          <span id="copyStatus" class="copy-status" role="status"></span>
+        <p>طاولة شاشة بعرض 1.80 متر مع بوكسين جداريين ورف. مجموعة مصممة لتخلي الجدار مرتب وواضح بدون تفاصيل زايدة.</p>
+      </div>
+
+      <div class="product-layout">
+        <div class="product-photo reveal">
+          <img id="detailImage" data-src-key="oak" alt="مجموعة ركن من الأمام" loading="lazy" />
+          <span class="photo-index">01 / 03</span>
+        </div>
+
+        <aside class="product-panel reveal">
+          <div class="product-title">
+            <p>TV UNIT SET</p>
+            <h3>مجموعة طاولة الشاشة</h3>
+          </div>
+
+          <div class="product-price">
+            <strong>350</strong>
+            <span>د.ل<br><small>للمجموعة كاملة</small></span>
+          </div>
+
+          <div class="product-lines">
+            <div><span>العرض</span><b>1.80 متر</b></div>
+            <div><span>المحتويات</span><b>طاولة + بوكسين + رف</b></div>
+            <div><span>الألوان</span><b>3 خيارات</b></div>
+          </div>
+
+          <button class="btn btn-dark full open-order" type="button">اطلب المجموعة</button>
+          <p class="microcopy">اختار اللون أولاً، وبعدها نجهز لك رسالة الطلب.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="colors" class="colors block">
+      <div class="shell">
+        <div class="section-head compact reveal">
+          <div>
+            <p class="eyebrow">الألوان</p>
+            <h2>نفس القطعة.<br>ثلاث شخصيات.</h2>
+          </div>
+          <p>اختار اللون اللي يخدم إضاءة ومساحة بيتك.</p>
+        </div>
+
+        <div class="color-grid">
+          <article class="color-card reveal" data-pick="white">
+            <div class="color-image"><img data-src-key="white" alt="مجموعة ركن باللون الأبيض" loading="lazy" /></div>
+            <div class="color-copy">
+              <div><small>01</small><h3>أبيض</h3></div>
+              <span class="color-chip chip-white"></span>
+            </div>
+            <p>خفيف بصرياً، مناسب للمساحات المضيئة والصغيرة.</p>
+            <button type="button">اختار الأبيض <span>←</span></button>
+          </article>
+
+          <article class="color-card reveal selected" data-pick="oak">
+            <div class="color-image"><img data-src-key="oak" alt="مجموعة ركن بلون البلوط الفاتح" loading="lazy" /></div>
+            <div class="color-copy">
+              <div><small>02</small><h3>بلوط فاتح</h3></div>
+              <span class="color-chip chip-oak"></span>
+            </div>
+            <p>دافئ وطبيعي، يعطي المساحة إحساس هادئ ومريح.</p>
+            <button type="button">اختار البلوط <span>←</span></button>
+          </article>
+
+          <article class="color-card reveal" data-pick="walnut">
+            <div class="color-image"><img data-src-key="walnut" alt="مجموعة ركن بلون الجوز الداكن" loading="lazy" /></div>
+            <div class="color-copy">
+              <div><small>03</small><h3>جوز داكن</h3></div>
+              <span class="color-chip chip-walnut"></span>
+            </div>
+            <p>أعمق وأفخم، مناسب للجدران الفاتحة والديكور الهادئ.</p>
+            <button type="button">اختار الجوز <span>←</span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="details" class="details shell block">
+      <div class="detail-statement reveal">
+        <p class="eyebrow">فكرة التصميم</p>
+        <h2>مش محتاج أثاث أكثر.<br><em>محتاج اختيار أهدأ.</em></h2>
+      </div>
+
+      <div class="detail-grid">
+        <article class="detail-card reveal">
+          <span>01</span>
+          <h3>تخزين مغلق</h3>
+          <p>الأغراض اليومية تختفي من المشهد وتبقى المساحة أنظف بصرياً.</p>
+        </article>
+        <article class="detail-card reveal">
+          <span>02</span>
+          <h3>تكوين جداري</h3>
+          <p>الرف والبوكسين يكملوا الطاولة ويعطوا الجدار توازن بدون زحمة.</p>
+        </article>
+        <article class="detail-card reveal">
+          <span>03</span>
+          <h3>مقاس عملي</h3>
+          <p>عرض 1.80 متر يعطي حضور واضح، ويخلي التكوين مناسب لعدة أحجام شاشات.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about block">
+      <div class="shell about-grid">
+        <div class="about-mark reveal" aria-hidden="true">
+          <span>ر</span><span>ك</span><span>ن</span>
+        </div>
+        <div class="about-copy reveal">
+          <p class="eyebrow">عن ركن</p>
+          <h2>نصمم للبيت الحقيقي، مش للصورة فقط.</h2>
+          <p>ركن مشروع أثاث يركز على القطع البسيطة، العملية، وسهلة الدمج داخل البيت. الفكرة إن القطعة تكون جميلة من غير ما تصرخ، وتخدمك كل يوم.</p>
+          <a class="text-link" href="#order">ابدأ من أول مجموعة <span>↙</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="order" class="order shell block">
+      <div class="order-card reveal">
+        <div>
+          <p class="eyebrow">جاهز لركنك؟</p>
+          <h2>المجموعة كاملة<br><strong>350 د.ل</strong></h2>
+          <p>طاولة شاشة 1.80 متر + بوكسين + رف.</p>
+        </div>
+
+        <div class="order-side">
+          <div class="chosen-color">
+            <span>اللون المختار</span>
+            <strong id="orderColorName">بلوط فاتح</strong>
+          </div>
+          <button class="btn btn-light full open-order" type="button">جهّز طلبي</button>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer section-shell">
-    <div class="brand footer-brand"><span class="brand-ar">رُكن</span><span class="brand-divider"></span><span class="brand-en">RUKN</span></div>
-    <p>أثاث بسيط. بيت أرتب.</p>
+  <footer class="footer shell">
+    <a class="brand" href="#top">
+      <span class="brand-word">ركن</span>
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span class="brand-en">RUKN</span>
+    </a>
+    <p>أثاث بسيط. بيت أهدأ.</p>
+    <a href="#top">للأعلى ↑</a>
   </footer>
+
+  <button class="mobile-order open-order" type="button">
+    <span>اطلب المجموعة</span><strong>350 د.ل</strong>
+  </button>
+
+  <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+  <section class="order-sheet" id="orderSheet" role="dialog" aria-modal="true" aria-labelledby="orderTitle" hidden>
+    <button class="sheet-close" id="sheetClose" type="button" aria-label="إغلاق">×</button>
+    <p class="eyebrow">طلب مجموعة ركن</p>
+    <h2 id="orderTitle">اختيارك جاهز.</h2>
+
+    <div class="sheet-summary">
+      <div><span>المجموعة</span><b>طاولة + بوكسين + رف</b></div>
+      <div><span>المقاس</span><b>1.80 متر</b></div>
+      <div><span>اللون</span><b id="sheetColorName">بلوط فاتح</b></div>
+      <div><span>السعر</span><b>350 د.ل</b></div>
+    </div>
+
+    <button class="btn btn-dark full" id="copyOrder" type="button">انسخ رسالة الطلب</button>
+    <p id="copyStatus" class="copy-status" role="status">بعد النسخ، ابعتها لصفحة ركن في الخاص.</p>
+  </section>
 
   <script src="assets/white-1.js"></script>
   <script src="assets/white-2.js"></script>

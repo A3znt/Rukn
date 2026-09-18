@@ -1,15 +1,7 @@
-const heroImage = document.getElementById('heroImage');
-const detailImage = document.getElementById('detailImage');
-const heroColorName = document.getElementById('heroColorName');
-const orderColorName = document.getElementById('orderColorName');
-const sheetColorName = document.getElementById('sheetColorName');
-const swatches = [...document.querySelectorAll('.swatch')];
-const colorCards = [...document.querySelectorAll('.color-card')];
-
-const IMAGES = {
-  white: `data:image/webp;base64,${window.RUKN_WHITE || ''}`,
-  oak: `data:image/webp;base64,${window.RUKN_OAK || ''}`,
-  walnut: `data:image/webp;base64,${window.RUKN_WALNUT || ''}`
+const IMAGE_MAP = {
+  white: window.RUKN_WHITE ? `data:image/webp;base64,${window.RUKN_WHITE}` : '',
+  oak: window.RUKN_OAK ? `data:image/webp;base64,${window.RUKN_OAK}` : '',
+  walnut: window.RUKN_WALNUT ? `data:image/webp;base64,${window.RUKN_WALNUT}` : ''
 };
 
 const LABELS = {
@@ -18,113 +10,151 @@ const LABELS = {
   walnut: 'جوز داكن'
 };
 
-let selectedKey = 'oak';
-
-function fillImages() {
-  document.querySelectorAll('[data-src-key]').forEach((img) => {
-    const key = img.dataset.srcKey;
-    if (IMAGES[key]) img.src = IMAGES[key];
+function hydrateImages() {
+  document.querySelectorAll('[data-rukn-image]').forEach((img) => {
+    const key = img.dataset.ruknImage;
+    if (IMAGE_MAP[key]) img.src = IMAGE_MAP[key];
   });
 }
+hydrateImages();
 
-function setColor(key, scrollToProduct = false) {
-  if (!IMAGES[key] || !LABELS[key]) return;
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
 
-  selectedKey = key;
-  const label = LABELS[key];
+function closeMenu() {
+  if (!menuToggle || !mobileMenu) return;
+  menuToggle.setAttribute('aria-expanded', 'false');
+  mobileMenu.hidden = true;
+  document.body.classList.remove('menu-open');
+}
+menuToggle?.addEventListener('click', () => {
+  const open = menuToggle.getAttribute('aria-expanded') === 'true';
+  menuToggle.setAttribute('aria-expanded', String(!open));
+  mobileMenu.hidden = open;
+  document.body.classList.toggle('menu-open', !open);
+});
+mobileMenu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
 
-  if (heroImage) {
-    heroImage.style.opacity = '.28';
-    window.setTimeout(() => {
-      heroImage.src = IMAGES[key];
-      heroImage.alt = `مجموعة طاولة شاشة ركن بلون ${label}`;
-      heroImage.style.opacity = '1';
-    }, 110);
-  }
+let selectedColor = 'white';
 
-  if (detailImage) {
-    detailImage.src = IMAGES[key];
-    detailImage.alt = `مجموعة طاولة شاشة ركن بلون ${label}`;
-  }
+function applyColor(key) {
+  if (!LABELS[key] || !IMAGE_MAP[key]) return;
+  selectedColor = key;
 
-  [heroColorName, orderColorName, sheetColorName].forEach((el) => {
-    if (el) el.textContent = label;
+  document.querySelectorAll('[data-color-picker] .color-dot').forEach((dot) => {
+    dot.classList.toggle('active', dot.dataset.color === key);
+  });
+  document.querySelectorAll('.product-thumb').forEach((thumb) => {
+    thumb.classList.toggle('active', thumb.dataset.color === key);
   });
 
-  swatches.forEach((btn) => btn.classList.toggle('active', btn.dataset.color === key));
-  colorCards.forEach((card) => card.classList.toggle('selected', card.dataset.pick === key));
-
-  if (scrollToProduct) {
-    document.getElementById('product')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const featured = document.getElementById('featuredImage');
+  if (featured) {
+    featured.style.opacity = '.35';
+    setTimeout(() => {
+      featured.src = IMAGE_MAP[key];
+      featured.alt = `طاولة شاشة ركن باللون ${LABELS[key]}`;
+      featured.style.opacity = '1';
+    }, 90);
   }
+
+  const main = document.getElementById('productMainImage');
+  if (main) {
+    main.style.opacity = '.35';
+    setTimeout(() => {
+      main.src = IMAGE_MAP[key];
+      main.alt = `مجموعة طاولة الشاشة من ركن باللون ${LABELS[key]}`;
+      main.style.opacity = '1';
+    }, 90);
+  }
+
+  const name = document.getElementById('selectedColorName');
+  const imageLabel = document.getElementById('productImageLabel');
+  const drawerColor = document.getElementById('drawerColor');
+  if (name) name.textContent = LABELS[key];
+  if (imageLabel) imageLabel.textContent = LABELS[key];
+  if (drawerColor) drawerColor.textContent = LABELS[key];
 }
 
-swatches.forEach((btn) => {
-  btn.addEventListener('click', () => setColor(btn.dataset.color));
+document.querySelectorAll('[data-color-picker] .color-dot').forEach((dot) => {
+  dot.addEventListener('click', () => applyColor(dot.dataset.color));
 });
+document.querySelectorAll('.product-thumb').forEach((thumb) => {
+  thumb.addEventListener('click', () => applyColor(thumb.dataset.color));
+});
+applyColor('white');
 
-colorCards.forEach((card) => {
-  card.addEventListener('click', () => setColor(card.dataset.pick, false));
-  card.querySelector('button')?.addEventListener('click', (event) => {
-    event.stopPropagation();
-    setColor(card.dataset.pick, true);
+const filters = [...document.querySelectorAll('.filter')];
+const shopCards = [...document.querySelectorAll('.shop-card')];
+const catalogCount = document.getElementById('catalogCount');
+
+function filterCatalog(category) {
+  let visible = 0;
+  shopCards.forEach((card) => {
+    const show = category === 'all' || card.dataset.category === category;
+    card.hidden = !show;
+    if (show) visible += 1;
   });
-});
+  filters.forEach((btn) => btn.classList.toggle('active', btn.dataset.filter === category));
+  if (catalogCount) catalogCount.textContent = String(visible);
+}
+filters.forEach((btn) => btn.addEventListener('click', () => filterCatalog(btn.dataset.filter)));
 
-const sheet = document.getElementById('orderSheet');
-const backdrop = document.getElementById('sheetBackdrop');
-const closeButton = document.getElementById('sheetClose');
-
-function openSheet() {
-  if (!sheet || !backdrop) return;
-  if (sheetColorName) sheetColorName.textContent = LABELS[selectedKey];
-  sheet.hidden = false;
-  backdrop.hidden = false;
-  document.body.classList.add('sheet-open');
-  closeButton?.focus();
+if (document.body.dataset.page === 'catalog') {
+  const params = new URLSearchParams(location.search);
+  const category = params.get('category');
+  if (category && filters.some((f) => f.dataset.filter === category)) filterCatalog(category);
 }
 
-function closeSheet() {
-  if (!sheet || !backdrop) return;
-  sheet.hidden = true;
-  backdrop.hidden = true;
-  document.body.classList.remove('sheet-open');
+const orderDrawer = document.getElementById('orderDrawer');
+const orderBackdrop = document.getElementById('orderBackdrop');
+const drawerClose = document.getElementById('drawerClose');
+
+function openDrawer() {
+  if (!orderDrawer || !orderBackdrop) return;
+  const drawerColor = document.getElementById('drawerColor');
+  if (drawerColor) drawerColor.textContent = LABELS[selectedColor];
+  orderDrawer.hidden = false;
+  orderBackdrop.hidden = false;
+  document.body.classList.add('drawer-open');
+  drawerClose?.focus();
 }
-
-document.querySelectorAll('.open-order').forEach((button) => {
-  button.addEventListener('click', openSheet);
-});
-closeButton?.addEventListener('click', closeSheet);
-backdrop?.addEventListener('click', closeSheet);
-
+function closeDrawer() {
+  if (!orderDrawer || !orderBackdrop) return;
+  orderDrawer.hidden = true;
+  orderBackdrop.hidden = true;
+  document.body.classList.remove('drawer-open');
+}
+document.querySelectorAll('.open-order').forEach((btn) => btn.addEventListener('click', openDrawer));
+drawerClose?.addEventListener('click', closeDrawer);
+orderBackdrop?.addEventListener('click', closeDrawer);
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && sheet && !sheet.hidden) closeSheet();
+  if (event.key === 'Escape') {
+    closeMenu();
+    if (orderDrawer && !orderDrawer.hidden) closeDrawer();
+  }
 });
 
 const copyOrder = document.getElementById('copyOrder');
 const copyStatus = document.getElementById('copyStatus');
-
 copyOrder?.addEventListener('click', async () => {
-  const label = LABELS[selectedKey];
-  const message = `السلام عليكم، نبي نطلب مجموعة ركن: طاولة شاشة 1.80 متر + بوكسين + رف، اللون: ${label}، السعر 350 د.ل.`;
-
+  const message = `السلام عليكم، نبي نطلب مجموعة طاولة الشاشة من ركن: طاولة 1.80 متر + بوكسين + رف. اللون: ${LABELS[selectedColor]}. السعر: 350 د.ل.`;
   try {
     await navigator.clipboard.writeText(message);
-    copyStatus.textContent = 'تم نسخ رسالة الطلب ✓ — ابعتها لصفحة ركن في الخاص.';
     copyOrder.textContent = 'تم النسخ ✓';
-    window.setTimeout(() => {
+    if (copyStatus) copyStatus.textContent = 'تم نسخ رسالة الطلب. ابعتها لصفحة ركن في الخاص.';
+    setTimeout(() => {
       copyOrder.textContent = 'انسخ رسالة الطلب';
-      copyStatus.textContent = 'بعد النسخ، ابعتها لصفحة ركن في الخاص.';
-    }, 3200);
+      if (copyStatus) copyStatus.textContent = 'بعد النسخ ابعتها لصفحة ركن في الخاص.';
+    }, 2800);
   } catch {
-    copyStatus.textContent = message;
+    if (copyStatus) copyStatus.textContent = message;
   }
 });
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const reveals = [...document.querySelectorAll('.reveal')];
-
-if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (reducedMotion || !('IntersectionObserver' in window)) {
   reveals.forEach((el) => el.classList.add('in'));
 } else {
   const observer = new IntersectionObserver((entries) => {
@@ -133,10 +163,6 @@ if (prefersReducedMotion || !('IntersectionObserver' in window)) {
       entry.target.classList.add('in');
       observer.unobserve(entry.target);
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
-
+  }, { threshold: .1, rootMargin: '0px 0px -30px' });
   reveals.forEach((el) => observer.observe(el));
 }
-
-fillImages();
-setColor('oak');

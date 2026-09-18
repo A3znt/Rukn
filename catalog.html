@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f2efe8">
+  <meta name="description" content="متجر ركن — وحدات تلفزيون، مداخل، طاولات وقطع أثاث بسيطة وعملية.">
+  <title>المتجر | ركن</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="catalog">
+  <header class="site-header">
+    <a class="wordmark" href="index.html"><span class="wordmark-ar">ركن</span><span class="wordmark-dot"></span><span class="wordmark-en">RUKN</span></a>
+    <nav class="desktop-nav"><a href="index.html">الرئيسية</a><a class="active" href="catalog.html">المتجر</a><a href="#categories">الأقسام</a><a href="about.html">عن ركن</a></nav>
+    <div class="header-actions"><a class="header-link" href="product-tv.html">المجموعة الأولى</a><button class="menu-toggle" type="button" aria-label="فتح القائمة" aria-expanded="false"><span></span><span></span></button></div>
+  </header>
+  <div class="mobile-menu" hidden><nav><a href="index.html">الرئيسية</a><a href="catalog.html">المتجر</a><a href="#categories">الأقسام</a><a href="about.html">عن ركن</a></nav></div>
+
+  <main>
+    <section class="page-hero shell">
+      <p class="kicker">RUKN STORE</p>
+      <div class="page-hero-row">
+        <h1>المتجر</h1>
+        <p>مجموعة صغيرة الآن، ومصممة تكبر. كل منتج في مكانه، وكل قسم واضح من البداية.</p>
+      </div>
+    </section>
+
+    <section class="catalog-section shell">
+      <div class="catalog-toolbar reveal">
+        <div class="filter-tabs" role="group" aria-label="فلترة المنتجات">
+          <button class="filter active" data-filter="all">الكل</button>
+          <button class="filter" data-filter="tv">وحدات التلفزيون</button>
+          <button class="filter" data-filter="entrance">المداخل</button>
+          <button class="filter" data-filter="tables">الطاولات</button>
+        </div>
+        <span class="catalog-count"><b id="catalogCount">1</b> منتج متوفر</span>
+      </div>
+
+      <div class="shop-grid" id="shopGrid">
+        <article class="shop-card reveal" data-category="tv">
+          <a class="shop-card-image" href="product-tv.html">
+            <img data-rukn-image="white" alt="مجموعة طاولة الشاشة ركن باللون الأبيض">
+            <span class="availability">متوفر</span>
+          </a>
+          <div class="shop-card-info">
+            <div>
+              <p>وحدات التلفزيون</p>
+              <h2><a href="product-tv.html">مجموعة طاولة الشاشة</a></h2>
+            </div>
+            <strong>350 د.ل</strong>
+          </div>
+          <div class="shop-card-footer">
+            <span>1.80 م · 3 ألوان</span>
+            <a href="product-tv.html">التفاصيل ←</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="catalog-categories section-space" id="categories">
+      <div class="shell">
+        <div class="section-title-row reveal">
+          <div><p class="kicker">الأقسام</p><h2>المتجر يتوسع من هنا.</h2></div>
+          <p class="section-copy">الأقسام التالية مجهزة داخل بنية الموقع، ونضيف المنتجات فور توفر صورها وأسعارها.</p>
+        </div>
+
+        <div class="department-grid">
+          <article class="department-card reveal" data-department="tv">
+            <span class="department-status available">متوفر الآن</span>
+            <div class="department-art department-art-tv"><i></i><i></i><i></i></div>
+            <div><small>01</small><h3>وحدات التلفزيون</h3><p>طاولات ووحدات جدارية للصالة.</p></div>
+          </article>
+          <article class="department-card reveal" data-department="entrance">
+            <span class="department-status">قريباً</span>
+            <div class="department-art department-art-entrance"><i></i><i></i></div>
+            <div><small>02</small><h3>المداخل</h3><p>كونسول، مرايا وحلول لأول مساحة في البيت.</p></div>
+          </article>
+          <article class="department-card reveal" data-department="tables">
+            <span class="department-status">قريباً</span>
+            <div class="department-art department-art-table"><i></i><i></i></div>
+            <div><small>03</small><h3>الطاولات</h3><p>قهوة، جانبية وقطع خفيفة للاستخدام اليومي.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div><a class="wordmark footer-wordmark" href="index.html"><span class="wordmark-ar">ركن</span><span class="wordmark-dot"></span><span class="wordmark-en">RUKN</span></a><p>أثاث للبيت الحقيقي.</p></div>
+      <div class="footer-links"><a href="catalog.html">المتجر</a><a href="#categories">الأقسام</a><a href="about.html">عن ركن</a></div>
+      <div class="footer-end"><span>LIBYA</span><span>© 2026 RUKN</span></div>
+    </div>
+  </footer>
+
+  <script src="assets/white-1.js"></script><script src="assets/white-2.js"></script><script src="assets/white-3.js"></script>
+  <script src="assets/oak-1.js"></script><script src="assets/oak-2.js"></script><script src="assets/oak-3.js"></script>
+  <script src="assets/walnut-1.js"></script><script src="assets/walnut-2.js"></script><script src="assets/walnut-3.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
